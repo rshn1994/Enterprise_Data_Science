@@ -6,6 +6,9 @@ import dash
 import os
 import sys
 
+import warnings
+warnings.filterwarnings('ignore')
+
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output,State

@@ -5,6 +5,9 @@ import json
 import pandas as pd
 from datetime import datetime
 
+import warnings
+warnings.filterwarnings('ignore')
+
 def import_json():
     data_cases = requests.get('https://covid.ourworldindata.org/data/owid-covid-data.json')
     json_object_cases=json.loads(data_cases.content)

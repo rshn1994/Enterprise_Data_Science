@@ -3,6 +3,9 @@ import numpy as np
 import os
 import sys
 
+import warnings
+warnings.filterwarnings('ignore')
+
 from datetime import datetime
 path=(os.getcwd()+'\\src\\')
 sys.path.append(path)

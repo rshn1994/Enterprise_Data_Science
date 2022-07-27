@@ -3,6 +3,8 @@ import pandas as pd
 from scipy import optimize
 from scipy import integrate
 
+import warnings
+warnings.filterwarnings('ignore')
 
 df_input_large=pd.read_csv('../data/processed/COVID_sir_flat_table.csv',sep=';').iloc[80:]
 pop = pd.read_csv('../data/processed/population.csv',sep=';')

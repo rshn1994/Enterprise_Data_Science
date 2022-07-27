@@ -3,6 +3,9 @@ from sklearn import linear_model
 reg = linear_model.LinearRegression(fit_intercept=True)
 import pandas as pd
 
+import warnings
+warnings.filterwarnings('ignore')
+
 from scipy import signal
 
 
