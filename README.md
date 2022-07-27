@@ -1,4 +1,4 @@
-# Enterprise Data Science: COVID 19 Analysis
+# Enterprise Data Science: COVID 19 Analysis SoSe-22
 
 ## Objective 
 
@@ -16,7 +16,7 @@ In order to implement the dynamic dashboard, we need to understand the following
 * Deployment (how to deliver results, dynamic dashboards in python)
 
 
-## First Delivery: Initial Delvery 
+## First Delivery: Initial Delivery 
 
 ![Relative COVID Cases](First_project_delivery/414583_Relative_Cases_COVID.png)
 
