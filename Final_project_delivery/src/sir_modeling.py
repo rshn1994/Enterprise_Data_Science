@@ -3,9 +3,10 @@ import pandas as pd
 from scipy import optimize
 from scipy import integrate
 
+#Suppress warnings if any
 import warnings
 warnings.filterwarnings('ignore')
-
+# Read the csv file for sir model
 df_input_large = pd.read_csv(
     '../data/processed/COVID_sir_flat_table.csv', sep=';').iloc[80:]
 pop = pd.read_csv('../data/processed/population.csv', sep=';')
@@ -13,7 +14,7 @@ pop = pd.read_csv('../data/processed/population.csv', sep=';')
 df_all = df_input_large.columns
 df_all = list(df_all)
 
-
+#ode definition for the SIR model
 def SIR_model(SIR, beta, gamma):
     ''' Simple SIR model
         S: susceptible population
@@ -82,5 +83,6 @@ for each in df_all[1:]:
     fitted = fit_odeint(t, *popt).reshape(-1, 1)
     df_input_large[each + '_fitted'] = fitted
 
+#Saving the fitted SIR model as .csv in the respective path
 df_input_large.to_csv('../data/processed/COVID_sir_fitted_table.csv', sep=';')
 df_input_large.head()

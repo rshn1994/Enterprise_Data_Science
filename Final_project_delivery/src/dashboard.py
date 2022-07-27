@@ -9,28 +9,32 @@ import dash
 import os
 import sys
 
+#Suppress the warnings for depreceated packages 
 import warnings
 warnings.filterwarnings('ignore')
 
-
+# Get current working directory path and append it
 path = (os.getcwd()+'\\src\\')
 sys.path.append(path)
 import import_data
 
+#Get the country list and iso codes 
 list_cases_country, df_country_info = import_data.import_cases_data()
 
 df_input_large = pd.read_csv('../data/processed/COVID_final_set.csv', sep=';')
 df = pd.read_csv('../data/processed/COVID_CRD.csv', sep=';')
+
+# Read the csv's for the generates sir model for all countries 
 df_input_sir = pd.read_csv(
     '../data/processed/COVID_sir_fitted_table.csv', sep=';')
 df_all = df_input_sir.columns
 df_all = list(df_all[:109])
 
-
+#Read the csv's for the list of cases and list of vaccination
 df_list = pd.read_csv('../data/processed/Cases_pop_NoNaN.csv', sep=';')
 df_vacc_list = pd.read_csv('../data/processed/Vax_per_pop.csv', sep=';')
 
-
+#Parse the country name and iso codes 
 country_name = df_country_info['location'].unique()
 country_iso_code = df_country_info['iso_code'].unique()
 
@@ -54,7 +58,7 @@ app.layout = html.Div([
                             ''',style={
                             'fontFamily': 'sans-serif',
                             'textAlign': 'left',
-                            'backgroundColor':'#070B20',
+                            'backgroundColor':'#377eb8',
                             'margin': '5px',
                             'color': '#F9690E',
                             'padding': '5px',
@@ -70,12 +74,12 @@ app.layout = html.Div([
                     options=[{'label': each, 'value': each}
                              for each in df_input_large['COUNTRY'].unique()],
                     # which are pre-selected
-                    value=['United Kingdom', 'Germany', 'India'],
+                    value=['Japan', 'Germany', 'India'],
                     multi=True),
 
                     width={'size': 5, "offset": 0, 'order': 'first'}
                     ),
-
+            #Dropdown for the list of cases per population
             dbc.Col(dcc.Dropdown(
                     id='country_drop_down',
                     options=[{'label': country_name[each], 'value':country_iso_code[each]}
@@ -85,7 +89,7 @@ app.layout = html.Div([
 
                     width={'size': 5, "offset": 6, 'order': 'first'}
                     ),
-
+            #Dropdown for the timeline,doubling time and filtered data
             dbc.Col(
                 dcc.Dropdown(
                     id='doubling_time',
@@ -111,7 +115,7 @@ app.layout = html.Div([
 
     # Third Row: Graphs for cases/confirmed cases/Doubling rate and graph for cases per population:
     dbc.Row(
-        [
+        [   #Graph for cases and cases per population 
             dbc.Col(dcc.Graph(
                     id='main_window_slope'
                     ),
@@ -127,7 +131,7 @@ app.layout = html.Div([
     ),
 
     dbc.Row(
-        [
+        [   #Dropdown for vaccination per population 
             dbc.Col(dcc.Dropdown(
                 id='country_vacc_data',
                 options=[{'label': country_name[each], 'value':country_iso_code[each]}
@@ -152,7 +156,7 @@ app.layout = html.Div([
         ], className="g-0",
     ),
     dbc.Row(
-        [
+        [   # Graph plot for vaccination per population 
             dbc.Col(dcc.Graph(
                     id='vacc_data'
                     ),
@@ -168,6 +172,7 @@ app.layout = html.Div([
     ),
 
     dbc.Row(
+        #Generation of the world map graph 
         dbc.Col(dcc.Graph(id="World_map",
                           figure=go.Figure(data=[go.Choropleth(
                               locations=df['CODE'],
@@ -199,12 +204,13 @@ app.layout = html.Div([
 
 ])
 
-
+# Figure definition for cases per population 
 @app.callback(Output('cases_per_pop', 'figure'),
               [Input('country_drop_down', 'value')])
 def Cases_fig(list_cases_country):
 
     traces = []
+    # Browsing over the list of countries and appending the plots
     for each in list_cases_country:
         traces.append(
             dict(x=df_list.date,
@@ -215,6 +221,7 @@ def Cases_fig(list_cases_country):
                  marker_size=1,
                  name=each))
 
+    #Figure dimensions for the plots 
     return {
         'data':
         traces,
@@ -234,11 +241,13 @@ def Cases_fig(list_cases_country):
     }
 
 
+#Figure definition for generating vaccination per population plots 
 @app.callback(Output('vacc_data', 'figure'),
               [Input('country_vacc_data', 'value')])
 def Vacc_fig(list_cases_country):
 
     traces = []
+    #Browsing over the list of countries and appending the plots 
     for each in list_cases_country:
         traces.append(
             dict(x=df_vacc_list.date,
@@ -249,6 +258,7 @@ def Vacc_fig(list_cases_country):
                  marker_size=1,
                  name=each))
 
+    #Figure dimensions for the plots 
     return {
         'data':
         traces,
@@ -267,13 +277,13 @@ def Vacc_fig(list_cases_country):
                     })
     }
 
-
+#Figure definition for generating confirmed, filtered and doubling rate plots 
 @app.callback(
     Output('main_window_slope', 'figure'),
     [Input('country_dropdown', 'value'),
      Input('doubling_time', 'value')])
 def update_figure(country_list, show_doubling):
-
+    # Condition to change the y axis title based on doubling rate being present or not 
     if 'DR' in show_doubling:
         my_yaxis = {'type': "log",
                     'title': 'Approximated doubling rate over 3 days (larger numbers are better #stayathome)'
@@ -284,6 +294,7 @@ def update_figure(country_list, show_doubling):
                     }
 
     traces = []
+    #Browsing over the list of countries and appending the plots     
     for each in country_list:
 
         df_plot = df_input_large[df_input_large['COUNTRY'] == each]
@@ -303,7 +314,7 @@ def update_figure(country_list, show_doubling):
                            name=each
                            )
                       )
-
+    #Figure dimensions for the plots 
     return {
         'data': traces,
         'layout': dict(
@@ -319,13 +330,14 @@ def update_figure(country_list, show_doubling):
         )
     }
 
-
+#Figure definition for generating SIR plots 
 @app.callback(
     Output('SIR_model', 'figure'),
     [Input('country_dropdown_sir', 'value')])
 def SIR_fig(con_input):
     df = df_input_sir
 
+    #Browsing over the dataframe and appending the plots
     for i in df[1:]:
         data = []
         trace = go.Scatter(x=df.date,
@@ -339,7 +351,8 @@ def SIR_fig(con_input):
                                   mode='lines+markers',
                                   name=con_input+'_fitted')
         data.append(trace_fitted)
-
+        
+    #Figure dimensions for the plots 
     return {'data': data,
             'layout': dict(
                 width=1280,

@@ -41,16 +41,7 @@ def calc_doubling_rate(df_input, filter_on='confirmed'):
 
 
 def get_doubling_time_via_regression(in_array):
-    ''' Use a linear regression to approximate the doubling rate
-
-        Parameters:
-        ----------
-        in_array : pandas.series
-
-        Returns:
-        ----------
-        Doubling rate: double
-    '''
+    ''' Use a linear regression to approximate the doubling rate'''
 
     y = np.array(in_array)
     X = np.arange(-1, 2).reshape(-1, 1)
@@ -64,20 +55,16 @@ def get_doubling_time_via_regression(in_array):
 
 
 def savgol_filter(df_input, column='confirmed', window=5):
-    ''' Savgol Filter is a digital filter that can be applied to a set of digital data points for the purpose of 
-        smoothing the data, that is, to increase the precision of the data without distorting the signal tendency.
-
+    ''' Calculate approximated doubling rate and return merged data frame
         Parameters:
         ----------
-        df_input : pandas.series
-        column : str
-        window : int
-            used data points to calculate the filter result
-
+        df_input: pd.DataFrame
+        filter_on: str
+            defines the used column
         Returns:
         ----------
-        df_result: pd.DataFrame
-            the index of the df_input has to be preserved in result
+        df_output: pd.DataFrame
+            the result will be joined as a new column on the input data frame
     '''
 
     degree = 1
@@ -94,8 +81,7 @@ def savgol_filter(df_input, column='confirmed', window=5):
 
 
 def rolling_reg(df_input, col='confirmed'):
-    ''' Rolling Regression is used to approximate the doubling time'
-
+    ''' Rolling Regression to approximate the doubling time'
         Parameters:
         ----------
         df_input: pd.DataFrame
@@ -155,9 +141,6 @@ if __name__ == '__main__':
     pd_JH_data = pd.read_csv(
         '../data/processed/20200823_COVID_relational_confirmed.csv', sep=';', parse_dates=[0])
     pd_JH_data = pd_JH_data.sort_values('date', ascending=True).copy()
-
-    # test_structure=pd_JH_data[((pd_JH_data['country']=='US')|
-    #                  (pd_JH_data['country']=='Germany'))]
 
     pd_result_larg = calc_filtered_data(pd_JH_data)
     pd_result_larg = calc_doubling_rate(pd_result_larg)
