@@ -1,57 +1,47 @@
-ADS_COVID-19
-==============================
+# Enterprise Data Science: COVID 19 Analysis
 
-applied data science on COVID-19 data 
+## Objective 
 
-Project Organization
-------------
+* To understand and learn the best practices of data science and translate them to develop a protoype for COVID analysis 
+* To plot the confiremd cases, doubling rate and doubling time for all countries 
+* To implement to a dynamic COVID-19 dashboard using (CRISP-DM) industry standard 
+* To implement a SIR Model to generate COVID infection statistics 
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+FTo implement the dynamic dashboard, we need to understand the following:
+
+* Business understanding (what is our goal)
+* Data Understanding (where do we get data and cleaning of data)
+* Data Preparation (data transformation and visualization)
+* Modeling (Statistics, Machine Learning, and SIR Simulations on COVID Data)
+* Deployment (how to deliver results, dynamic dashboards in python)
 
 
---------
+## First Delivery: Initial Delvery 
+![Relative COVID Cases](/First_Project_Delivery/figures/414583_Relative_Cases_COVID.png)
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+![Relative Vaccination](/First_Project_Delivery/figures/414583_Relative_Vaccination.png)
+
+For first delivery, plots for the following have been generated 
+* Relative COVID cases for all countries w.r.t time 
+* Relative Vaccination for all countries w.r.t time 
+
+## Final Delivery: 
+
+The dynamic dashboard has been divided into the following sections:
+* Timelines confirmed, doubling rate Timelines confirmed:confirmed cases for a specific country. Doubling rate: Time time taken for COVID cases to double. Doubling rate filtered: Doubling rate filtered using 'Savgol filter' for better forecast.
+![Confirmed Cases](/Final_Project_Delivery/figures/Confirmed_cases.png)
+
+
+* An SIR model is an epidemiological model that computes the theoretical number of people infected with a contagious illness in a closed population over time. S: Susceptible, I: Infected, R: Recovered <sup>1</sup>
+![SIR Model](/Final_Project_Delivery/figures/SIR_model.png)
+
+
+* World map for all countries 
+![World Map](/Final_Project_Delivery/figures/World_Map.png)
+
+
+## Final Dashboard
+![Final Dashboard](/Final_Project_Delivery/figures/Final_Dashboard.png)
+
+
+`source`<sup>1</sup>:https://mathworld.wolfram.com/SIRModel.html

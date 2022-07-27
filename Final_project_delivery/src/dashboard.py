@@ -58,9 +58,9 @@ app.layout = html.Div([
                             ''',style={
                             'fontFamily': 'sans-serif',
                             'textAlign': 'left',
-                            'backgroundColor':'#377eb8',
+                            'backgroundColor':'#344e41',
                             'margin': '5px',
-                            'color': '#F9690E',
+                            'color': '#dad7cd',
                             'padding': '5px',
                             'borderRadius': '5px'})),
                     width={'size': 15, 'offset': 0},
@@ -76,7 +76,7 @@ app.layout = html.Div([
                     # which are pre-selected
                     value=['Japan', 'Germany', 'India'],
                     multi=True),
-
+                
                     width={'size': 5, "offset": 0, 'order': 'first'}
                     ),
             #Dropdown for the list of cases per population
@@ -86,7 +86,7 @@ app.layout = html.Div([
                              for each in range(len(country_name))],
                     value=['USA', 'IND'],
                     multi=True),
-
+                    
                     width={'size': 5, "offset": 6, 'order': 'first'}
                     ),
             #Dropdown for the timeline,doubling time and filtered data
@@ -106,6 +106,7 @@ app.layout = html.Div([
                     value='confirmed',
                     multi=False
                 ),
+                
                 width={'size': 3, "offset": 0, 'order': 'second'}
             ),
 
@@ -119,13 +120,15 @@ app.layout = html.Div([
             dbc.Col(dcc.Graph(
                     id='main_window_slope'
                     ),
-                    width=6, md={'size': 5,  "offset": 0, 'order': 'first'}
+                    width=6, md={'size': 5,  "offset": 0, 'order': 'first'},
+                    
                     ),
 
             dbc.Col(dcc.Graph(
                     id='cases_per_pop'
                     ),
-                    width=6, md={'size': 5,  "offset": 1, 'order': 'first'}
+                    width=6, md={'size': 5,  "offset": 1, 'order': 'first'},
+                    
                     ),
         ],
     ),
@@ -138,7 +141,7 @@ app.layout = html.Div([
                          for each in range(len(country_name))],
                 value=['USA', 'IND'],
                 multi=True),
-
+                
                 width={'size': 5, "offset": 0, 'order': 'second'}
             ),
 
@@ -150,7 +153,7 @@ app.layout = html.Div([
                     value='Brazil',  # which are pre-selected
                     multi=False
                     ),
-
+                    
                     width={'size': 5, "offset": 6, 'order': 'second'}
                     ),
         ], className="g-0",
@@ -160,13 +163,15 @@ app.layout = html.Div([
             dbc.Col(dcc.Graph(
                     id='vacc_data'
                     ),
-                    width=6, md={'size': 5,  "offset": 0, 'order': 'first'}
+                    width=6, md={'size': 5,  "offset": 0, 'order': 'first'},
+                    
                     ),
 
             dbc.Col(dcc.Graph(
                     id='SIR_model'
                     ),
-                    width=6, md={'size': 5,  "offset": 1, 'order': 'first'}
+                    width=6, md={'size': 5,  "offset": 1, 'order': 'first'},
+                    
                     ),
         ],
     ),
@@ -178,7 +183,7 @@ app.layout = html.Div([
                               locations=df['CODE'],
                               z=df['Confirm cases'],
                               text=df['COUNTRY'],
-                              colorscale='Blues',
+                              colorscale='Reds',
                               autocolorscale=False,
                               reversescale=False,
                               marker_line_color='darkgray',
@@ -197,6 +202,7 @@ app.layout = html.Div([
                           ),
 
                           ),
+                
                 width=12, md={'size': 12,  "offset": 0, 'order': 'first'}
                 ),
     )
@@ -229,6 +235,7 @@ def Cases_fig(list_cases_country):
         dict(width=1280,
              height=900,
              title='Plot for Cases per Population',
+             plot_bgcolor='#dad7cd',
              xaxis={'title': 'Date',
                     'tickangle': -45,
                     'nticks': 20,
@@ -266,6 +273,7 @@ def Vacc_fig(list_cases_country):
         dict(width=1280,
              height=900,
              title='Plot for Vaccination Data',
+             plot_bgcolor='#dad7cd',
              xaxis={'title': 'Date',
                     'tickangle': -45,
                     'nticks': 20,
@@ -325,7 +333,7 @@ def update_figure(country_list, show_doubling):
                    'nticks': 20,
                    'tickfont': dict(size=14, color="#7f7f7f"),
                    },
-
+            plot_bgcolor='#dad7cd',
             yaxis=my_yaxis
         )
     }
@@ -358,13 +366,14 @@ def SIR_fig(con_input):
                 width=1280,
                 height=900,
                 title='SIR model',
+                plot_bgcolor='#dad7cd',
                 xaxis={'tickangle': -45,
                        'nticks': 20,
                        'tickfont': dict(size=14, color="#7f7f7f"),
                        },
                 yaxis={'type': "log",
                        'range': '[1.1,5.5]'
-                       }
+                       },
 
             )
             }
