@@ -3,8 +3,8 @@
 ## Objective 
 
 * To understand and learn the best practices of data science and translate them to develop a protoype for COVID analysis 
-* To plot the confiremd cases, doubling rate and doubling time for all countries 
-* To implement to a dynamic COVID-19 dashboard using (CRISP-DM) industry standard 
+* To plot the confirmed cases, doubling rate and doubling time for all countries 
+* To implement a dynamic COVID-19 dashboard using (CRISP-DM) industry standard 
 * To implement a SIR Model to generate COVID infection statistics 
 
 In order to implement the dynamic dashboard, we need to understand the following:
