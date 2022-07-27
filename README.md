@@ -7,7 +7,7 @@
 * To implement to a dynamic COVID-19 dashboard using (CRISP-DM) industry standard 
 * To implement a SIR Model to generate COVID infection statistics 
 
-FTo implement the dynamic dashboard, we need to understand the following:
+In order to implement the dynamic dashboard, we need to understand the following:
 
 * Business understanding (what is our goal)
 * Data Understanding (where do we get data and cleaning of data)
