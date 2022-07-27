@@ -17,9 +17,11 @@ FTo implement the dynamic dashboard, we need to understand the following:
 
 
 ## First Delivery: Initial Delvery 
-![Relative COVID Cases](/First_Project_Delivery/figures/414583_Relative_Cases_COVID.png)
 
-![Relative Vaccination](/First_Project_Delivery/figures/414583_Relative_Vaccination.png)
+![Relative COVID Cases](First_Project_Delivery/figures/414583_Relative_Cases_COVID.png)
+
+
+![Relative Vaccination](First_Project_Delivery/figures/414583_Relative_Vaccination.png)
 
 For first delivery, plots for the following have been generated 
 * Relative COVID cases for all countries w.r.t time 
@@ -29,19 +31,21 @@ For first delivery, plots for the following have been generated
 
 The dynamic dashboard has been divided into the following sections:
 * Timelines confirmed, doubling rate Timelines confirmed:confirmed cases for a specific country. Doubling rate: Time time taken for COVID cases to double. Doubling rate filtered: Doubling rate filtered using 'Savgol filter' for better forecast.
-![Confirmed Cases](/Final_Project_Delivery/figures/Confirmed_cases.png)
+
+![Confirmed Cases](Final_Project_Delivery/figures/Confirmed_cases.png)
 
 
 * An SIR model is an epidemiological model that computes the theoretical number of people infected with a contagious illness in a closed population over time. S: Susceptible, I: Infected, R: Recovered <sup>1</sup>
-![SIR Model](/Final_Project_Delivery/figures/SIR_model.png)
+
+![SIR Model](Final_Project_Delivery/figures/SIR_model.png)
 
 
 * World map for all countries 
-![World Map](/Final_Project_Delivery/figures/World_Map.png)
+![World Map](Final_Project_Delivery/figures/World_Map.png)
 
 
 ## Final Dashboard
-![Final Dashboard](/Final_Project_Delivery/figures/Final_Dashboard.png)
+![Final Dashboard](Final_Project_Delivery/figures/Final_Dashboard.png)
 
 
 `source`<sup>1</sup>:https://mathworld.wolfram.com/SIRModel.html
