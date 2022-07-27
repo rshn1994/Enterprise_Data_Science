@@ -4,3 +4,17 @@ data/processed/COVID_small_flat_table.csv
 data/processed/COVID_small_sync_timeline_table.csv
 data/raw/NPGEO/GER_state_data.csv
 data/raw/SMARTABLE/US_data.txt
+data/processed/20200823_COVID_relational_confirmed.csv
+data/processed/Cases_pop_NoNaN.csv
+data/processed/Cases_pop.csv
+data/processed/COVID_CRD.csv
+data/processed/COVID_sir_fitted_table.csv
+data/processed/COVID_sir_flat_table.csv
+data/processed/population.csv
+data/processed/Vax_per_pop.csv
+data/raw/COVID-19
+data/raw/COVID-19
+data/raw/COVID-19
+Final_project_delivery/Covid_Dashboard.ipynb
+Final_project_delivery/Covid_Dashboard_v1.ipynb
+Final_project_delivery/Final_notebook.ipynb
