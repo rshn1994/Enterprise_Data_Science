@@ -2,7 +2,7 @@
 
 ## Objective 
 
-* To understand and learn the best practices of data science and translate them to develop a protoype for COVID analysis 
+* To understand and learn the best practices of data science and translate them to develop a prototype for COVID analysis 
 * To plot the confirmed cases, doubling rate and doubling time for all countries 
 * To implement a dynamic COVID-19 dashboard using (CRISP-DM) industry standard 
 * To implement a SIR Model to generate COVID infection statistics 
@@ -35,7 +35,7 @@ The dynamic dashboard has been divided into the following sections:
 ![Confirmed Cases](Final_project_delivery/figures/Confirmed_cases.png)
 
 
-* An SIR model is an epidemiological model that computes the theoretical number of people infected with a contagious illness in a closed population over time. S: Susceptible, I: Infected, R: Recovered <sup>1</sup>
+* A SIR model is an epidemiological model that computes the theoretical number of people infected with a contagious illness in a closed population over time. S: Susceptible, I: Infected, R: Recovered <sup>1</sup>
 
 ![SIR Model](Final_project_delivery/figures/SIR_model.png)
 
